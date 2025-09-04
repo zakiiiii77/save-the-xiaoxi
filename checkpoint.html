@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkpoint</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+
+<h2 id="title"></h2>
+<p id="riddle"></p>
+<p id="challenge"></p>
+
+<p>Time left: <span id="timer">05:00</span></p>
+
+<div id="sabotage"></div>
+
+
+<button onclick="nextCheckpoint()">Complete Challenge</button>
+
+<script>
+const checkpoints = [
+  {title:"Checkpoint 1: Library", riddle:"Find the lost notes.", challenge:"Solve a mini logic puzzle."},
+  {title:"Checkpoint 2: Cafeteria", riddle:"Where noodles twist and turn.", challenge:"Slurp a noodle."},
+  {title:"Checkpoint 3: Sports Field", riddle:"Chaos in the group project.", challenge:"Build a pyramid."},
+];
+
+let cp = getTeamProgress() - 1;
+document.getElementById('title').textContent = checkpoints[cp].title;
+document.getElementById('riddle').textContent = checkpoints[cp].riddle;
+document.getElementById('challenge').textContent = checkpoints[cp].challenge;
+
+function nextCheckpoint(){
+  cp++;
+  if(cp < checkpoints.length){
+    advanceCheckpoint();
+    location.reload();
+  } else {
+    window.location.href = 'puzzle.html';
+  }
+}
+</script>
+</body>
+</html>

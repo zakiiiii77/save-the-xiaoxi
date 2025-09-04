@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Team Registration</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+<h2>Register Your Team</h2>
+<form id="teamForm">
+  Team Name: <input type="text" id="teamName" required><br>
+  Members (comma separated): <input type="text" id="members" required><br>
+  <button type="submit">Start Hunt</button>
+</form>
+
+<script>
+document.getElementById('teamForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const teamName = document.getElementById('teamName').value;
+  const members = document.getElementById('members').value;
+  localStorage.setItem('teamName', teamName);
+  localStorage.setItem('members', members);
+  localStorage.setItem('currentCheckpoint', 1);
+  window.location.href = 'checkpoint.html';
+});
+</script>
+</body>
+</html>

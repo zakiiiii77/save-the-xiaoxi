@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Final Puzzle</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Final Puzzle: Assemble Xiaoshi!</h2>
+<div id="puzzle-board">
+  <div class="piece" draggable="true" style="background-image:url('images/piece1.png');"></div>
+  <div class="piece" draggable="true" style="background-image:url('images/piece2.png');"></div>
+  <div class="piece" draggable="true" style="background-image:url('images/piece3.png');"></div>
+  <div class="piece" draggable="true" style="background-image:url('images/piece4.png');"></div>
+</div>
+<button id="checkPuzzle">Submit Puzzle</button>
+<p id="message"></p>
+
+<script>
+// Simple drag and drop logic for puzzle pieces
+const pieces = document.querySelectorAll('.piece');
+pieces.forEach(piece => {
+    piece.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.style.backgroundImage);
+    });
+});
+const board = document.getElementById('puzzle-board');
+board.addEventListener('dragover', e => e.preventDefault());
+board.addEventListener('drop', e => {
+    e.preventDefault();
+    const img = e.dataTransfer.getData('text/plain');
+    const newDiv = document.createElement('div');
+    newDiv.className = 'piece';
+    newDiv.style.backgroundImage = img;
+    board.appendChild(newDiv);
+    document.getElementById('message').textContent = "Xiaoshi is saved! 🎉";
+});
+</script>
+
+</body>
+</html>
